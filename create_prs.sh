@@ -7,6 +7,17 @@ BASE_BRANCH="main" # Change target branch
 PR_TITLE="Regular Deployment 5th February, 2025" #change pr namae
 PR_BODY="This PR is created by a script"
 
+
+#!/bin/bash
+
+# List of repositories
+#REPOSITORIES=( "RecruitCRM-API" "recruitcrm-frontend-vue3" "External-Pages-Next" "mail-service-kit" "recruitcrm-modern" 
+# "codepipeline-validator" "auditlog-package-java" "recruitcrm-candidate-microservice" "Albatross" "testtherest_framework"
+# "studio-frontend" "recruitcrm-ui-kit-v2" "single-store" "ostrich" "Terry" "recruitcrm-auditlog-consumer" "action-log-java" "notifications-worker" 
+# "comm" "neptune" "recruitcrm-report" "NylasService" "logging-java" "entity-models-java" "aurora-package-java" "recruitcrm-webapp-utility"
+# "asper" "liquibase-rcrm-poc" "katia" )
+
+
 # List of repositories (Modify as needed)
 REPOSITORIES=("recruitcrm-frontend-vue3" "recruitcrm-modern" "job-boards" "Albatross" "comm" ) 
 
