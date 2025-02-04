@@ -49,10 +49,12 @@ for REPO in "${REPOSITORIES[@]}"; do
         echo "Repository $REPO does not exist! Skipping..."
     fi
 done
-
+echo "You can copy below PR links and paste in slack channel"
+echo "-----------------------------------------------"
 echo -e "\n:pr-merged-1: $PR_TITLE"
 for PR in "${PR_LINKS[@]}"; do
     echo "$PR"
 done
+echo "-----------------------------------------------"
 
 echo "All PRs processed successfully!"
