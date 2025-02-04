@@ -1,0 +1,74 @@
+name: Create PRs for Multiple Repos
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'PR Title'
+        required: true
+        default: 'Regular Deployment'
+      headBranch:
+        description: 'Source Branch'
+        required: true
+        default: 'dev'
+      baseBranch:
+        description: 'Target Branch'
+        required: true
+        default: 'main'
+      repos:
+        description: 'Comma-separated list of repositories'
+        required: true
+        default: 'repo1,repo2'
+
+jobs:
+  create-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up GitHub CLI
+        uses: cli/cli-action@v2
+        with:
+          gh_version: 'latest'
+
+      - name: Run PR Creation Script
+        run: |
+          # Fetch inputs
+          PR_TITLE="${{ github.event.inputs.title }}"
+          HEAD_BRANCH="${{ github.event.inputs.headBranch }}"
+          BASE_BRANCH="${{ github.event.inputs.baseBranch }}"
+          REPOS="${{ github.event.inputs.repos }}"
+
+          echo "PR Title: $PR_TITLE"
+          echo "Source Branch: $HEAD_BRANCH"
+          echo "Target Branch: $BASE_BRANCH"
+          echo "Repositories: $REPOS"
+
+          # Iterate over the repositories and create PRs
+          for REPO in $(echo $REPOS | tr ',' '\n'); do
+              echo "Processing repository: $REPO"
+
+              # Check if the repository exists on GitHub
+              if gh repo view "$GITHUB_REPOSITORY/$REPO" &>/dev/null; then
+                  echo "✅ Repository $REPO found. Checking PR..."
+
+                  # Check if a PR already exists
+                  EXISTING_PR=$(gh pr list --repo "$GITHUB_REPOSITORY/$REPO" --base "$BASE_BRANCH" --head "$HEAD_BRANCH" --state open -L 1)
+                  
+                  if [ -n "$EXISTING_PR" ]; then
+                      PR_NUMBER=$(echo "$EXISTING_PR" | awk '{print $1}')
+                      PR_LINK="https://github.com/$GITHUB_REPOSITORY/$REPO/pull/$PR_NUMBER"
+                      echo "❌ PR already exists for $REPO. Link: $PR_LINK"
+                  else
+                      PR_LINK=$(gh pr create --repo "$GITHUB_REPOSITORY/$REPO" \
+                                             --base "$BASE_BRANCH" \
+                                             --head "$HEAD_BRANCH" \
+                                             --title "$PR_TITLE" \
+                                             --body "This PR was created automatically." | grep -o 'https://github.com/[^ ]*')
+                      echo "✅ PR created for $REPO: $PR_LINK"
+                  fi
+              else
+                  echo "❌ Repository $REPO does not exist! Skipping..."
+              fi
+          done
