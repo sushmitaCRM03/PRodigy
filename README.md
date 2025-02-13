@@ -1,34 +1,78 @@
-PR-Creator
-This script helps automate the process of creating pull requests via GitHub CLI.
+### आवश्यकता❌ आलस्य✅ ही आविष्कार की जननी है!
+=
 
-Prerequisites
-Before you run the script, ensure you have the following:
+---
 
-GitHub CLI installed
-Proper authentication with your GitHub account
-Steps to Run
-1. Install GitHub CLI
-If you don't have GitHub CLI installed, you can install it using Homebrew:
+# **PRodigy**
 
--- brew install gh
+**PRodigy** is your ultimate automation tool to create Pull Requests (PRs) effortlessly. Born out of a need to save time (and a healthy dose of laziness), this script simplifies the tedious task of creating PRs in bulk. Why work hard when you can work smart?
 
-2. Authenticate GitHub CLI
-Once GitHub CLI is installed, authenticate it with your GitHub account by running:
+---
 
--- gh auth login
 
-3. Make the Script Executable
-After downloading the create_prs.sh script, give it executable permissions:
+## **Prerequisites**
+Before you start, make sure you have the following:
 
--- chmod +x create_prs.sh
+1. **GitHub CLI Installed**: The tool relies on GitHub CLI to interact with repositories.  
+2. **Authenticated GitHub Account**: Ensure proper authentication with your GitHub account.
 
-4. Run the Script
-Now you're ready to use the script. Simply execute the following command to run it:
+---
 
--- ./create_prs.sh
+## **Steps to Get Started**
 
-The script will handle the process of creating the pull requests as required.
+### 1. Install GitHub CLI
+If you don’t already have GitHub CLI installed, you can install it using Homebrew:
+```bash
+brew install gh
+```
 
-Just change the base, head branch and the title
+---
 
-Along with this add Repos for which PR needs to be created
+### 2. Authenticate GitHub CLI
+Once installed, authenticate the CLI with your GitHub account:
+```bash
+gh auth login
+```
+
+---
+
+### 3. Download and Prepare the Script
+Download the `create_prs.sh` script and give it executable permissions:
+```bash
+chmod +x create_prs.sh
+```
+
+---
+
+### 4. Run the Script
+You’re ready to automate PR creation! Run the script using:
+```bash
+./create_prs.sh
+```
+
+- Specify the **base branch**, **head branch**, and the **PR title**.
+- Provide the list of repositories for which PRs need to be created.
+
+The script will take care of the rest, ensuring PRs are created quickly and efficiently.
+
+---
+
+## **How to Specify Repositories**
+Update the script with the list of repositories for which you need PRs. Example:
+```bash
+REPOS=(
+  "repo1"
+  "repo2"
+  "repo3"
+)
+```
+
+---
+
+## **Why Use PRodigy?**
+- **Efficiency**: Handles bulk PR creation in minutes.
+- **Flexibility**: Easily configurable for different branches and titles.
+- **Simplicity**: Requires minimal setup and effort.
+
+Embrace your laziness—let **PRodigy** do the hard work for you! 🚀
+
