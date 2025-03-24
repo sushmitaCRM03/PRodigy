@@ -4,8 +4,9 @@
 ORG_NAME="Workforce-Cloud-Tech"
 HEAD_BRANCH="dev"  # Change source branch
 BASE_BRANCH="main" # Change target branch
-PR_TITLE="Regular Deployment 5th February, 2025" #change pr namae
+PR_TITLE="Regular Deployment 25th March, 2025" #change pr namae
 PR_BODY="This PR is created by a script"
+IS_UPDATE_PR_TITLE=false
 
 
 # List of repositories
@@ -17,7 +18,7 @@ PR_BODY="This PR is created by a script"
 
 
 # List of repositories (Modify as needed)
-REPOSITORIES=("recruitcrm-frontend-vue3" "recruitcrm-modern" "job-boards" "Albatross" "comm" ) 
+REPOSITORIES=("mail-service-kit" "recruitcrm-modern" "NylasService" "Albatross" "RecruitCRM-API" "recruitcrm-webapp-utility" "neptune") 
 
 PR_LINKS=()
 
@@ -34,6 +35,12 @@ for REPO in "${REPOSITORIES[@]}"; do
             PR_NUMBER=$(echo "$EXISTING_PR" | awk '{print $1}')
             PR_LINK="https://github.com/$ORG_NAME/$REPO/pull/$PR_NUMBER"
             PR_LINKS+=("$REPO - $PR_LINK")
+            # if PR already exists then update the PR Title if IS_UPDATE_PR_TITLE is true
+            if [ "$IS_UPDATE_PR_TITLE" = true ]; then
+                gh pr edit --repo "$ORG_NAME/$REPO" --title "$PR_TITLE" --body "$PR_BODY" $PR_NUMBER
+                echo "PR already exists for $REPO. Link: $PR_LINK. PR Title updated."
+            fi
+
             echo "PR already exists for $REPO. Link: $PR_LINK"
         else
             PR_LINK=$(gh pr create --repo "$ORG_NAME/$REPO" \
