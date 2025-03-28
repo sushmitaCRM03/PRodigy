@@ -2,23 +2,24 @@
 
 # Configuration
 ORG_NAME="Workforce-Cloud-Tech"
+# HEAD_BRANCH="cse-bug-release"  # Change source branch
 HEAD_BRANCH="dev"  # Change source branch
 BASE_BRANCH="main" # Change target branch
-PR_TITLE="Regular Deployment 25th March, 2025" #change pr namae
+PR_TITLE="Regular Deployment 28th March, 2025" #change pr namae
 PR_BODY="This PR is created by a script"
 IS_UPDATE_PR_TITLE=false
 
 
 # List of repositories
 # REPOSITORIES=( "RecruitCRM-API" "recruitcrm-frontend-vue3" "External-Pages-Next" "mail-service-kit" "recruitcrm-modern" 
-# "codepipeline-validator" "auditlog-package-java" "recruitcrm-candidate-microservice" "Albatross" "testtherest_framework"
+# "codepipeline-validator" "auditlog-package-java" "recruitcrm-candidate-microservice" "Albatross" "testtherest_framework" "RecruitCRM-Zapier"
 # "studio-frontend" "recruitcrm-ui-kit-v2" "single-store" "ostrich" "Terry" "recruitcrm-auditlog-consumer" "action-log-java" "notifications-worker" 
 # "comm" "neptune" "recruitcrm-report" "NylasService" "logging-java" "entity-models-java" "aurora-package-java" "recruitcrm-webapp-utility"
-# "asper" "liquibase-rcrm-poc" "katia" )
+# "asper" "liquibase-rcrm-poc" "katia" "rcrm-auth-service" "job-boards" "RecruitCRM-Mobile-App" "executive-search-report" "recruitcrm-candidate-microservice")
 
 
 # List of repositories (Modify as needed)
-REPOSITORIES=("mail-service-kit" "recruitcrm-modern" "NylasService" "Albatross" "RecruitCRM-API" "recruitcrm-webapp-utility" "neptune") 
+REPOSITORIES=("recruitcrm-modern" "Albatross" "ostrich" "recruitcrm-webapp-utility" "NylasService" "executive-search-report" "recruitcrm-candidate-microservice" "recruitcrm-frontend-vue3" "RecruitCRM-Zapier" "comm")
 
 PR_LINKS=()
 
